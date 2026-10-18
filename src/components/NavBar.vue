@@ -4,10 +4,9 @@
       <div class="logo" @click="$router.push('/')">醒狮数脉</div>
       <div class="links">
         <router-link to="/">首页</router-link>
-        <router-link to="/3d">3D展示</router-link>
-        <router-link to="/ar">AR体验</router-link>
-        <router-link to="/knowledge">知识库</router-link>
-        <router-link to="/community">共创社区</router-link>
+        <router-link to="/market">数字交易市场</router-link>
+        <router-link to="/community">社区互动</router-link>
+        <router-link to="/3d">3D模型展示</router-link>
       </div>
     </div>
   </nav>
