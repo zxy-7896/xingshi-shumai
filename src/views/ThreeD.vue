@@ -32,7 +32,7 @@
           <h3>模型信息</h3>
         </div>
         <div class="info-content">
-          <p style="text-align: left;"><strong>模型名称：</strong>醒狮三维模型（演示版）</p>
+          <p style="text-align: left;"><strong>模型名称：</strong>醒狮三维模型</p>
           <p style="text-align: left;"><strong>工艺类别：</strong>狮头扎作——外部彩绘与装饰工艺</p>
           <p style="text-align: left;"><strong>展示细节：</strong>外部纹样、绒球装饰、鳞片细节、胡须质感</p>
           <p style="text-align: left;"><strong>技术说明：</strong>数字化采集、三维重建、WebGL 实时渲染与多角度交互</p>
@@ -93,25 +93,25 @@ onMounted(() => {
   container.appendChild(renderer.domElement);
 
 
-  // 4. 光影 (完美曝光版)
-  // 1. 环境光 (稍微收一点，保留暗部)
-  scene.add(new THREE.AmbientLight(0xffffff, 1.2)); 
+    // 4. 光影 (柔光棚拍版，提亮暗部，保留细节)
+  // 1. 强环境光 (把四周的暗部全部照亮)
+  scene.add(new THREE.AmbientLight(0xffffff, 2.0)); 
   
-  // 2. 正面主光 (降一点，防止白毛过曝)
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1.5); 
+  // 2. 正面主光 (适度白光，不要太猛)
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2); 
   dirLight.position.set(5, 5, 5);
   dirLight.castShadow = true;
   scene.add(dirLight);
 
-  // 3. 背面补光 (暖光，勾勒出红色轮廓)
-  const backLight = new THREE.DirectionalLight(0xffebc4, 1.0);
-  backLight.position.set(-5, 5, -5);
-  scene.add(backLight);
+  // 3. 左上方补光 (打亮左侧脸部的暗部)
+  const leftLight = new THREE.DirectionalLight(0xfff5e6, 1.0);
+  leftLight.position.set(-5, 3, 2);
+  scene.add(leftLight);
 
-  // 4. 底部补光 (暗红光，增加层次感)
-  const redLight = new THREE.PointLight(0xb02a2a, 1.5, 15);
-  redLight.position.set(0, -3, 3);
-  scene.add(redLight);
+  // 4. 底部补光 (把下巴、胡须的阴影照亮)
+  const bottomLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  bottomLight.position.set(0, -5, 2);
+  scene.add(bottomLight);
 
   // 5. 交互
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -232,7 +232,13 @@ onMounted(() => {
   border-radius: 16px; overflow: hidden; margin-bottom: 30px; 
   box-shadow: 0 4px 14px rgba(139, 105, 20, 0.08); 
 }
-.canvas-box { position: relative; width: 100%; height: 500px; background: #2a2522; }
+.canvas-box { 
+  position: relative; 
+  width: 100%; 
+  height: 500px; 
+  /* 换成了更亮一点的渐变灰 */
+  background: radial-gradient(circle at center, #4a423d 0%, #2a2522 100%) !important; 
+}
 .loading-tip { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #c9a227; font-size: 18px; font-weight: bold; }
 
 /* 交互提示 */

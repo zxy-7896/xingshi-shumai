@@ -25,6 +25,15 @@ import NavBar from './components/NavBar.vue'
   box-sizing: border-box;
 }
 
+html, body, #app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f5eb !important; /* 宣纸底色 */
+  overflow-x: hidden; /* 防止横向出现滚动条 */
+}
+
 body {
   /* 1. 设置全站的宣纸底色 */
   background-color: #f9f5eb !important;
@@ -49,4 +58,5 @@ body {
   /* 确保容器透明，让 body 的背景透上来 */
   background-color: transparent !important; 
 }
+
 </style>
